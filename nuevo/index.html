@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Campo de Flores Amarillas</title>
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    height:100vh;
+    background:linear-gradient(#87CEEB 40%, #7ec850 40%);
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* campo */
+#campo{
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+
+/* flor */
+.flor{
+    position:absolute;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    animation:balanceo 4s ease-in-out infinite;
+}
+
+/* tallo */
+.tallo{
+    width:4px;
+    height:80px;
+    background:green;
+}
+
+/* pétalos */
+.petalo{
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:yellow;
+    border-radius:50%;
+}
+
+.centro{
+    position:absolute;
+    width:14px;
+    height:14px;
+    background:orange;
+    border-radius:50%;
+}
+
+/* posiciones pétalos */
+.p1{top:-10px;}
+.p2{left:-10px;}
+.p3{right:-10px;}
+.p4{bottom:-10px;}
+
+/* animación florecer */
+.cabeza{
+    position:relative;
+    width:20px;
+    height:20px;
+    transform:scale(0);
+    animation:florecer 2s forwards;
+}
+
+@keyframes florecer{
+    to{transform:scale(1);}
+}
+
+@keyframes balanceo{
+    0%{transform:rotate(0deg)}
+    50%{transform:rotate(3deg)}
+    100%{transform:rotate(-3deg)}
+}
+
+/* contenedor de mensaje */
+
+#mensaje{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(255,255,255,0.85);
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    width:350px;
+    text-align:center;
+}
+
+#mensaje textarea{
+    width:100%;
+    height:120px;
+    border:none;
+    outline:none;
+    resize:none;
+    font-size:16px;
+    background:transparent;
+}
+
+h2{
+    margin-top:0;
+    color:#444;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="campo"></div>
+
+<div id="mensaje">
+<h2>🌼 PARA NANCY 🌼</h2>
+<textarea placeholder=" Hola mi cielo 💛
+Mira, por si acaso no puedo darte las flores amarillas en persona (aunque espero que sí jaja), quise dejarte este pequeño detalle.
+
+Sabes que te quiero muchísimo y que haces que mis días sean especiales, ¿verdad? Solo quería recordártelo. Me haces muy feliz y siempre logras sacarme sonrisas sinceras, así como yo espero también poder sacarte muchas a ti.
+
+Te quiero un montón, de verdad. Espero que tengas un día muy bonito.
+Te quiero, te adoro y te mando muchos besos y abrazos. 💛🌼
+"></textarea>
+</div>
+
+<script>
+
+/* crear flores aleatorias */
+
+let campo = document.getElementById("campo");
+
+for(let i=0;i<80;i++){
+
+    let flor = document.createElement("div");
+    flor.className="flor";
+
+    flor.style.left=Math.random()*100+"vw";
+    flor.style.bottom=Math.random()*60+"vh";
+
+    let cabeza=document.createElement("div");
+    cabeza.className="cabeza";
+
+    cabeza.innerHTML=`
+    <div class="petalo p1"></div>
+    <div class="petalo p2"></div>
+    <div class="petalo p3"></div>
+    <div class="petalo p4"></div>
+    <div class="centro"></div>
+    `;
+
+    let tallo=document.createElement("div");
+    tallo.className="tallo";
+
+    flor.appendChild(cabeza);
+    flor.appendChild(tallo);
+
+    campo.appendChild(flor);
+}
+
+</script>
+
+</body>
+</html>
